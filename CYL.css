@@ -1,0 +1,156 @@
+header {
+  background-color: #333; 
+  padding: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .headerInfo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 0 20px;
+  }
+
+  .logo {
+      display: flex;
+      align-items: center;
+  }
+
+  .logo h1 {
+      font-size: 24px;
+      color: #fff;
+      font-weight: bold;
+  }
+
+  .logo-img {
+      width: 40px; 
+      height: 40px; 
+      margin-right: 10px; 
+  }
+
+  nav ul {
+      display: flex;
+      gap: 10px;
+      list-style: none;
+  }
+
+  nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 5px 10px;
+      transition: background-color 0.3s, color 0.3s;
+  }
+
+  nav ul li a:hover {
+      background-color: #8b5e3b;
+      color: #fff;
+      border-radius: 4px;
+  }
+
+
+.theImage {
+    position: relative;
+    text-align: center;
+    -webkit-filter: grayscale(0%);
+
+}
+
+.theCentere {
+    color: white;
+    font-size:50;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+#d {
+    padding-top: 20;
+    margin-left:70;
+    padding-bottom:20;
+}
+
+
+#m {
+    padding-top: 20;
+    margin-left:70;
+    padding-bottom:20;
+}
+
+#i {
+    padding-top: 20;
+    margin-left:70;
+    padding-bottom:20;
+}
+
+
+
+
+.button1 {
+    padding: left 20px;;
+    border: none;
+    color: white;
+    background-color: rgb(108, 36, 16);
+    padding: 8px 109px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 70;
+    cursor: pointer;
+  }
+
+  .button2 {
+    padding: left 20px;;
+    border: none;
+    color: white;
+    background-color: rgb(108, 36, 16);
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 70;
+    cursor: pointer;
+  }
+
+  .button3 {
+    padding: left 20px;;
+    border: none;
+    color: white;
+    background-color: rgb(108, 36, 16);
+    padding: 8px 101px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    margin-left: 70;
+    cursor: pointer;
+  }
+
+
+  footer {
+    background-color: #8b5e3b;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
+
+footer .icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+footer .icons a img {
+    width: 24px;
+    height: 24px;
+}
+
+
+

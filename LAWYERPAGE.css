@@ -1,0 +1,40 @@
+.theImage1 {
+    padding-top: 100;
+ 
+    padding-right:100;
+}
+
+
+.theTXT {
+    padding-left:80;
+}
+
+
+.theTXT2 {
+    padding-left:80;
+}
+
+.theButton {
+    padding-top:50;
+    text-align: center;
+}
+
+footer {
+    background-color: #8b5e3b;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+}
+
+footer .icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+footer .icons a img {
+    width: 24px;
+    height: 24px;
+}
