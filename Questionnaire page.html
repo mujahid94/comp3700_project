@@ -193,14 +193,16 @@ header {
             <br/>
 
             <!-- Text Area for more info -->
+
             <label for="comments">More Notes:</label>
             <textarea id="comments" name="comments" rows="4" placeholder="Write your full feedback"></textarea>
 
             <!-- Checkbox for Agreement -->
             <label><input type="checkbox" id="consent" name="consent"> I agree to the terms and conditions</label>
-            <div class="error" id="consentError"></div>
 
-            <button type="submit">Submit Feedback</button>
+            <div class="error" id="consentError"></div>
+            
+            <a href="SubmitFeedback.html"> <button type="submit">Submit Feedback</button> </a>
         </form>
 
         <!-- JAVASCRIPT part -->
@@ -218,66 +220,59 @@ header {
             const other_error = document.getElementById('consentError');
 
             form.addEventListener('submit', function(event) {
-                // initial boolean value
-                let is_correct = true;
+    // initial boolean value
+    let is_correct = true;
 
-                // Make sure that thae name contains letters and spaces only and (2 - 25 characters)
-                const namePattern = /^[a-zA-Z\s]{2,25}$/;
-                // if inputted name contains something other letters or spaces
-                if (!namePattern.test(input_name.value)) {
-                    // set boolean value to false
-                    is_correct = false;
-                    // Display error message
-                    name_error.textContent = "Please input a correct name (letters only , 2 - 25 characters)";
-                } else {
-                    // There is no error message
-                    name_error.textContent = "";
-                }
+    // Validate the name input
+    const namePattern = /^[a-zA-Z\s]{2,25}$/;
+    if (!namePattern.test(input_name.value)) {
+        is_correct = false;
+        name_error.textContent = "Please input a correct name (letters only , 2 - 25 characters)";
+    } else {
+        name_error.textContent = "";
+    }
 
-                // Make sure that the email input is as commonly known
-                const email_formula = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                // if inputted email formula is incorrect
-                if (!email_formula.test(input_email.value)) {
-                    // set boolean value to false
-                    is_correct = false;
-                    // Display error message
-                    email_error.textContent = "Please input a valid email";
-                } else {
-                    // There is no error message
-                    email_error.textContent = "";
-                }
+    // Validate the email input
+    const email_formula = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email_formula.test(input_email.value)) {
+        is_correct = false;
+        email_error.textContent = "Please input a valid email";
+    } else {
+        email_error.textContent = "";
+    }
 
-                // Make sure that there at least on option selected from radio button
-                let is_rating_check = false;
-                for (let radio of rating) {
-                    if (radio.checked) {
-                        is_rating_check = true;
-                        break;
-                    }
-                }
-                // If there is no option selected
-                if (!is_rating_check) {
-                    is_correct = false;
-                    // Display error message
-                    rating_error.textContent = "Please Rate Our Services";
-                } else {
-                    // There is no error message
-                    rating_error.textContent = "";
-                }
+    // Validate the satisfaction rating
+    let is_rating_check = false;
+    for (let radio of rating) {
+        if (radio.checked) {
+            is_rating_check = true;
+            break;
+        }
+    }
+    if (!is_rating_check) {
+        is_correct = false;
+        rating_error.textContent = "Please Rate Our Services";
+    } else {
+        rating_error.textContent = "";
+    }
 
-                // Make sure that checkbox is checked
-                if (!agreement_checkbox.checked) {
-                    is_correct = false;
-                    other_error.textContent = "Agreement to the terms and conditions is a must";
-                } else {
-                    other_error.textContent = "";
-                }
+    // Validate the terms and conditions checkbox
+    if (!agreement_checkbox.checked) {
+        is_correct = false;
+        other_error.textContent = "Agreement to the terms and conditions is a must";
+    } else {
+        other_error.textContent = "";
+    }
 
-                // Make sure that all validate conditions are applied
-                if (!is_correct) {
-                    event.preventDefault();
-                }
-            });
+    // If the form is valid, redirect to another page
+    if (is_correct) {
+        event.preventDefault(); // Prevent default form submission
+        window.location.href = "SubmitFeedback.html"; // Redirect to Thank You page
+    } else {
+        event.preventDefault(); // Prevent submission if validation fails
+    }
+});
+
         </script>
 
         <footer>
