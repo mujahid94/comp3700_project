@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <link rel="stylesheet" href="CYL.css">
     <link rel="stylesheet" href="LAWYERPAGE.css">
@@ -23,9 +22,9 @@
         }
 
         header {
-        background-color: #333; 
-        padding: 10px 0;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #333;
+            padding: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .headerInfo {
@@ -49,14 +48,14 @@
         }
 
         .logo-img {
-            width: 40px; 
-            height: 40px; 
-            margin-right: 10px; 
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
         }
 
         nav ul {
             display: flex;
-            gap: 10px;
+            gap: 20px;
             list-style: none;
         }
 
@@ -76,7 +75,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <header>
@@ -92,8 +90,7 @@
                     <li><a href="summaryOfSession.html">Summary Of Court Session</a></li>
                     <li><a href="payment.html">Payment</a></li>
                     <li><a href="CourtReminder.html">Schedule</a></li>
-                    <li><a href="contus.html">Contact US</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="Questionnaire page.html">Feedback</a></li>
                 </ul>
             </nav>
         </div>
@@ -105,21 +102,17 @@
             <p style="font-style: italic; font-weight: bold ; color: black;">
                 We aim to put everything related to law <br> in one system or unit. <br>
                 <br>
-                to make it easier for clients and law offices <br> to communicate with each other and serve justice!.
+                to make it easier for clients and law offices <br> to communicate with each other and serve justice!..
             </p>
         </div>
 
-        <br>
-        <br>
-        <hr>
-        <br>
-        <br>
+        <br><br><hr><br><br>
 
         <div style="display: flex; justify-content: center; align-items: center;">
-            <form id="searchForm">
+            <form method="POST" action="aboutus.php">
                 <label for="searchInput">Search Lawyers or Info:</label>
-                <input type="text" id="searchInput" placeholder="Search...">
-                <button type="button" onclick="searchInformation()">Search</button>
+                <input type="text" name="searchInput" id="searchInput" placeholder="Search...">
+                <button type="submit">Search</button>
             </form>
         </div>
 
@@ -135,7 +128,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Data will be inserted here from arrays -->
+                    <!-- Data will be inserted here dynamically by PHP -->
+                    <?php
+                    // PHP will populate this table dynamically.
+                    if (isset($info)) {
+                        foreach ($info as $item) {
+                            echo "<tr><td>{$item->type}</td><td>{$item->description}</td></tr>";
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -151,7 +152,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Lawyer data will be inserted here -->
+                    <!-- Lawyer data will be inserted here dynamically by PHP -->
+                    <?php
+                    // PHP will populate this table dynamically.
+                    if (isset($lawyers)) {
+                        foreach ($lawyers as $lawyer) {
+                            echo "<tr><td>{$lawyer->name}</td><td>{$lawyer->specialization}</td></tr>";
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>
@@ -169,97 +178,5 @@
         <p>+968 23242355 &nbsp;&nbsp; lawcommunity@gmail.com</p>
     </footer>
 
-    <script>
-        // Define two object types using constructor functions
-        function Lawyer(name, specialization) {
-            this.name = name;
-            this.specialization = specialization;
-        }
-
-        function Info(type, description) {
-            this.type = type;
-            this.description = description;
-        }
-
-        // Array of Lawyer objects with more lawyers and English names
-        const lawyers = [
-            new Lawyer("Mohammed Bin Said", "Criminal Law"),
-            new Lawyer("Jasim Bin Abdullah", "Family Law"),
-            new Lawyer("Fahad Bin Yousef", "Corporate Law"),
-            new Lawyer("Khalid Bin Mohammed", "Labor Law"),
-            new Lawyer("Ali Bin Ahmed", "Civil Law"),
-            new Lawyer("Yusuf Bin Abdullah", "Immigration Law"),
-            new Lawyer("Nasser Bin Said", "Property Law"),
-        ];
-
-        // Array of Info objects
-        const info = [
-            new Info("Vision", "Our Aim is to provide services regarding law issues in which anyone with internet connection could get access. Also, we aim to provide full satisfaction to clients using our system. Law rules change from place to another, that's why our system is only in Oman."),
-            new Info("Location", "Muscat / Oman"),
-            new Info("Lawyers", "Our system includes the most well-known lawyers in Oman, such as: Mohammed Bin Said, Jasim Bin Abdullah, Fahad Bin Yousef, Khalid Bin Mohammed, Ali Bin Ahmed, Yusuf Bin Abdullah, Nasser Bin Said, and many more!"),
-            new Info("Phone No", "+968 23242355"),
-            new Info("Email", "lawcommunity@gmail.com"),
-        ];
-
-        // Function to populate tables with the information
-        function populateTables() {
-            const infoTable = document.getElementById("infoTable").getElementsByTagName('tbody')[0];
-            const lawyerTable = document.getElementById("lawyerTable").getElementsByTagName('tbody')[0];
-
-            // Populate Info table
-            infoTable.innerHTML = "";
-            info.forEach(item => {
-                let row = infoTable.insertRow();
-                row.insertCell(0).innerText = item.type;
-                row.insertCell(1).innerText = item.description;
-            });
-
-            // Populate Lawyer table
-            lawyerTable.innerHTML = "";
-            lawyers.forEach(lawyer => {
-                let row = lawyerTable.insertRow();
-                row.insertCell(0).innerText = lawyer.name;
-                row.insertCell(1).innerText = lawyer.specialization;
-            });
-        }
-
-        // Function to search through the arrays and display results
-        function searchInformation() {
-            const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-
-            const filteredLawyers = lawyers.filter(lawyer =>
-                lawyer.name.toLowerCase().includes(searchTerm) ||
-                lawyer.specialization.toLowerCase().includes(searchTerm)
-            );
-
-            const filteredInfo = info.filter(item =>
-                item.type.toLowerCase().includes(searchTerm) ||
-                item.description.toLowerCase().includes(searchTerm)
-            );
-
-            // Clear tables and repopulate with filtered data
-            const infoTable = document.getElementById("infoTable").getElementsByTagName('tbody')[0];
-            const lawyerTable = document.getElementById("lawyerTable").getElementsByTagName('tbody')[0];
-
-            infoTable.innerHTML = "";
-            filteredInfo.forEach(item => {
-                let row = infoTable.insertRow();
-                row.insertCell(0).innerText = item.type;
-                row.insertCell(1).innerText = item.description;
-            });
-
-            lawyerTable.innerHTML = "";
-            filteredLawyers.forEach(lawyer => {
-                let row = lawyerTable.insertRow();
-                row.insertCell(0).innerText = lawyer.name;
-                row.insertCell(1).innerText = lawyer.specialization;
-            });
-        }
-
-        // Initial population of tables
-        window.onload = populateTables;
-    </script>
-
 </body>
-
 </html>
